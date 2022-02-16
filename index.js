@@ -19,6 +19,10 @@ app.use(express.urlencoded({extended: true}));
 app.get("/", (req, res) => {
   res.render("index")
 })
+
+//CRIA NOVO ADM rodar apenas uma vez
+app.get("/novoadm", userCtrl.hendlerNewAdmin)
+
 app.post("/login", userCtrl.hendlerAuth)
 
 app.get("/users", autorizar(), userCtrl.hendlerAllUsers)

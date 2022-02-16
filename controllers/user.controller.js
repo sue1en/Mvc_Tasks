@@ -20,6 +20,15 @@ const hendlerAuth = async (req, res, next) => {
   };
 };
 
+const hendlerNewAdmin = async (req, res, next) => {
+  try{
+    await userService.createAdmin();
+    return res.status(200).send({message:"Novo usuário criado com sucesso!"});
+ } catch (error) {
+    console.log(error);
+    res.status(500).send({message:"error"});
+ };
+};
 const hendlerNewUser = async (req, res, next) => {
   try{
     const {user, body} = req
@@ -65,5 +74,6 @@ module.exports={
   hendlerNewUser,
   hendlerAllUsers,
   hendlerUsersById,
-  hendlerAuth
+  hendlerAuth,
+  hendlerNewAdmin
 }
