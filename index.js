@@ -21,7 +21,7 @@ app.get("/", (req, res) => {
 })
 
 //CRIA NOVO ADM rodar apenas uma vez
-app.get("/novoadm", userCtrl.hendlerNewAdmin)
+app.post("/novoadm", userCtrl.hendlerNewAdmin)
 
 app.post("/login", userCtrl.hendlerAuth)
 

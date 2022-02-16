@@ -1,4 +1,5 @@
 const userService = require("../services/user.service")
+
 const hendlerAuth = async (req, res, next) => {
   try {
     const { email, password } = req.body;
@@ -29,6 +30,7 @@ const hendlerNewAdmin = async (req, res, next) => {
     res.status(500).send({message:"error"});
  };
 };
+
 const hendlerNewUser = async (req, res, next) => {
   try{
     const {user, body} = req

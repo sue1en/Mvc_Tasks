@@ -92,7 +92,7 @@ const userById = async (user_id) => {
 }
 
 
-const createAdmin = () => {
+const createAdmin = async () => {
   const registerModel = {
     id: uuidv4(),
     name: "admin",
@@ -100,13 +100,9 @@ const createAdmin = () => {
     type:'1',
     password: createHash("123"),
   };
-  return users.create(registerModel);
+  return await users.create(registerModel);
 };
 
-const allUsers = async () => {
-  const resultFromDB = await users.findAll({});
-  return resultFromDB;
-}
 
 module.exports={
   isEmailRegistered,
