@@ -23,31 +23,22 @@ const isEmailRegistered = async (email) => {
 };
 
 const userValidate = async (email, password) => {
-  return await users.findOne({ where:{email, password: createHash(password)}}) ? true : false
+  return await users.findOne({ where:{email, password:createHash(password)}}) ? true : false
 };
 
 const createCredential = async (userEmail) => {
   try{
-    const userCredential = await users.findOne({
-      where: {
-        email: userEmail,
-      },
+    const user = await users.findOne({
+      where: {email: userEmail},
     });
-  
-    const { id, name, email, type } = userCredential;
-  
-    const credential = {
-      token: jwt.sign({ email: email}, HashSecret, {
-        expiresIn: `${validTime}ms`,
-      }),
-      user: {
-        id,
-        name,
-        email,
-        type,
-      },
-    };
-    return credential;
+    const token = jwt.sign(
+        {email:user.email},
+        HashSecret,
+        {expiresIn:`${validTime}ms`}
+    )
+    console.log("###credential###", user)
+    return "sucesso!"
+      
   } catch (error) {
     console.log(error);
   };

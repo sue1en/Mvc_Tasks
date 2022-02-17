@@ -1,34 +1,47 @@
 const jwt = require('jsonwebtoken');
 const userService = require('../services/user.service');
 
-exports.autorizar = (r = '*') => {
-  return async (req, res, next) => {
-    const { token } = req.headers;
-    try{
-      if (!token) {
-        return res.status(403).send({
-          message: "usuário não autorizado."
-        });
-      };
+// exports.autorizar = () => {
+//   return (req, res, next) => {
+//     const token = req.headers
 
-      const userJWT = jwt.verify(token, process.env.JWT_KEY);
-      const user = await userService.isEmailRegistered(userJWT.email);
-      req.user = user;
+//     console.log("###TOKEN###", token)
+//     if (!token) {
+//       return res.status(403).send({
+//         message: "usuário não autorizado."
+//       });
+//     };
+//     try{
+//       const userJWT = jwt.verify(token, process.env.JWT_KEY);
+//       req.user = userJWT;
+      
+//     } catch (error) {
+//       return res.status(401).send({message: "usuário não autenticado!"});
+//     };
 
-      if (r !== '*'){
-        if(!profiles[user.type].includes(r))
-        {
-          return res.status(403).send({
-          message: "Usuário não autorizado."
-          });
-        };
-      };
-      next();
+//     next();
+//   };
+// };
 
-    } catch (error) {
-      res.status(401).send({
-        message: "usuário não autenticado!"
-      });
-    };
+
+const autorizar = (req, res, next) => {
+  const token = req.headers.cookie
+
+  console.log("###TOKEN###", token)
+  if (!token) {
+    return res.status(403).send({
+      message: "usuário não autorizado."
+    });
   };
+  try{
+    const userJWT = jwt.verify(token, process.env.JWT_KEY);
+    req.user = userJWT;
+    
+  } catch (error) {
+    return res.status(401).send({message: "usuário não autenticado!"});
+  };
+
+  return next();
 };
+  
+  module.exports = autorizar;

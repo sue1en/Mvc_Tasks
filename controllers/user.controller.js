@@ -7,14 +7,9 @@ const hendlerAuth = async (req, res, next) => {
     if (!result) {
       return res.status(400).send({message: `usuário ou senha inválidos.`});
     }; 
-    var credential = await userService.createCredential(email);
-      return res.header({
-        "token": credential.token, 
-        "user_id":credential.user.id,
-        "user_name":credential.user.name,
-        "user_email":credential.user.email,
-        "user_type":credential.user.type,
-      }).status(200).send()
+    var userCredential = await userService.createCredential(email);
+    // console.log("###CTRL###", userCredential)
+      return res.status(200).send(userCredential)
   } catch (error) {
     console.log(error);
     res.status(500).send({message:"error!"});
@@ -50,10 +45,11 @@ const hendlerNewUser = async (req, res, next) => {
 
 const hendlerAllUsers = async (req, res, next) => {
   try{
-    const {user} = req
-    if (user.type !== "1") {
-      return res.status(400).send({message: 'Usuário não autorizado!'});
-    }
+    const user = req
+    console.log("###2###", user)
+    // if (user.type !== "1") {
+    //   return res.status(400).send({message: 'Usuário não autorizado!'});
+    // }
     const result = await userService.allUsers();
     return res.status(200).send(result);
   } catch (error) {
