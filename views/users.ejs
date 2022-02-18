@@ -4,10 +4,91 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login</title>
+  <link rel="stylesheet" href="./public/style.css">
+  <title>Usuários</title>
 </head>
 <body>
-  <h1 font-size="50px">Bem vindo</h1>
-  </form>
+  <header>
+    <%- include ('./layout/header.ejs') %>
+  </header>
+  <main>
+    <div class="main-box">
+      <div class="title-box">
+        <h2>Bem vindo a Lista de Usuários</h2>
+        <div class="second-nav-box">
+          <ul>
+            <li><a href="/">voltar para home</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="sections">
+        <table class="table-main">
+          <thead>
+            <tr class="row-title">
+              <th class="row-cell-title">Email</th>
+              <th class="row-cell-title">Nome</th>
+              <th class="row-cell-title">Tipo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% user?.map ((item) => {%> 
+              <tr class="row-result">
+                <td class="row-cell-result"> <%= item.email %></td>
+                <td class="row-cell-result"><%= item.name %></td>
+                <td class="row-cell-result"><%= item.type %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+      <div class="sections">
+        <div class="new-item-title">
+          <button id="new-user-btn">Novo usuário</button>
+        </div>
+        <div id="new-user-input">
+          <div class="forms-style">
+            <form action="/newuser" method="POST">
+              <div class="form-fields">
+                <label for="email">Email</label>
+                <input
+                type="text"
+                name="email"
+                placeholder="seuemail@email.com"
+                />
+              </div>
+              <div class="form-fields">
+                <label for="name">Nome</label>
+                <input
+                type="text"
+                name="name"
+                placeholder="Nome do novo usuário"
+                />
+              </div>
+              <div class="form-fields">
+                <label for="password">Senha</label>
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="senha"
+                />
+              </div>
+              <button type="submit" value="newuser">Criar</button>
+            </form>
+          </div>
+          <script language="JavaScript">
+            const formDiv = document.getElementById("new-user-input");
+            formDiv.style.display = "none"
+            const btn = document.getElementById("new-user-btn");
+            btn.onclick = function () {
+              formDiv.style.display = "block";
+            };
+          </script>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <%- include ('./layout/footer.ejs') %>
+  </footer>
 </body>
 </html>

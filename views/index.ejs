@@ -4,24 +4,28 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="public/style.css">
   <title>Login</title>
 </head>
 <body>
-  <h1 font-size="50px">Faça seu login</h1>
-  <form action="/login" method="POST">
-    <label for="email">Email</label>
-    <input
-    type="text"
-    name="email"
-    placeholder="seuemail@email.com"
-    />
-    <label for="password">Senha</label>
-    <input
-      type="password"
-      name="password"
-      placeholder="senha"
-    />
-    <button type="submit" value="login">entrar</button>
-  </form>
+  <header>
+    <%- include ('./layout/header.ejs') %>
+  </header>
+  <main>
+    <div class="main-box">
+      <div class="title-box">
+        <h1>Bem vindo</h1>
+      </div>
+      <div class="nav-box">
+        <ul>
+          <li><a href="/users">Usuários</a></li>
+          <li><a href="/tasks">Tarefas</a></li>
+        </ul>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <%- include ('./layout/footer.ejs') %>
+  </footer>
 </body>
 </html>

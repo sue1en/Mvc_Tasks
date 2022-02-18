@@ -3,18 +3,19 @@ const { v4:uuidv4 } = require("uuid")
 
 const allTasks = async () => {
   const resultFromDB = await tasks.findAll({
-    include: [{
-      model: users,
-      as: 'userTask',
-    }]
   });
-  return resultFromDB;
+  const mapTasks = resultFromDB?.map(item => {
+    return item.dataValues
+  });
+
+  return mapTasks;
 };
 const createNewTask = async (body, user_id) => {
   return await tasks.create({
     id:uuidv4(),
     title: body.title,
-    user_id:user_id
+    // user_id:user_id
+    user_id:"0d3cd7f2-187d-4813-803d-8f9761bd2175"
   });
 };
 

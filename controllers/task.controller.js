@@ -3,9 +3,10 @@ const taskService = require("../services/task.service")
 const hendlerNewTask = async (req, res, next) => {
   try{
     const body  = req.body;
-    const userId  = req.user.id;
-    await taskService.createNewTask(body, userId);
-    return res.status(200).send("sucesso!!");
+    // const userId  = req.user.id;
+    await taskService.createNewTask(body);
+    const taskReload = await taskService.allTasks()
+    return res.status(200).render("tasks", {message:"Nova tarefa criada com sucesso!", task:taskReload});
   } catch (error) {
     console.log(error);
     res.status(500).send({message:"erro!!!"});
@@ -25,12 +26,12 @@ const hendlerTaskByUser = async (req, res, next) => {
 
 const hendlerAllTasks = async (req, res, next) => {
   try{
-    const {user} = req
-    if (user.type !== "1") {
-      return res.status(400).send({message: 'Usuário não autorizado!'});
-    }
-    const result = await taskService.allTasks();
-    return res.status(200).send(result);
+    // const {user} = req
+    // if (user.type !== "1") {
+    //   return res.status(400).send({message: 'Usuário não autorizado!'});
+    // }
+    const task = await taskService.allTasks();
+    return res.status(200).render("tasks", {task:task});
   } catch (error) {
     console.log(error);
     res.status(500).send({message:"error!"});
@@ -56,7 +57,6 @@ const hendlerEditTask = async (req, res, next) => {
     const {user, body} = req
     const task_id = req.params.id
     var taskResult = await taskService.taskById(task_id);
-   console.log("######", task_id)
     if (user.dataValues.id !== taskResult.dataValues.user_id) {
       return res.status(400).send({message: 'Usuário não autorizado!'});
     }
@@ -70,14 +70,15 @@ const hendlerEditTask = async (req, res, next) => {
 
 const hendlerRemoveTask = async (req, res, next) => {
   try {
-    const {user} = req
+    // const {user} = req
     const task_id = req.params.id
-    var taskResult = await taskService.taskById(task_id);
-    if (user.dataValues.id !== taskResult.dataValues.user_id) {
-      return res.status(400).send({message: 'Usuário não autorizado!'});
-    }
+    // var taskResult = await taskService.taskById(task_id);
+    // if (user.dataValues.id !== taskResult.dataValues.user_id) {
+    //   return res.status(400).send({message: 'Usuário não autorizado!'});
+    // }
     await taskService.deleteTask(task_id);
-    return res.status(200).send({message:"Removido com sucesso!"});
+    const taskReload = await taskService.allTasks()
+    return res.status(200).render("tasks", {message:"Novo usuário criado com sucesso!", task:taskReload});
   } catch (error) {
     console.log(error);
     res.status(500).send({message:"error!"});

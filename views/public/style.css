@@ -1,0 +1,207 @@
+*{
+  margin:0;
+  padding:0;
+  outline:none;
+  border:0;
+  background:none;
+}
+body{
+  width: 100vw;
+  height: 100vh;
+  background: #ffffff;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body header{
+  width: 100vw;
+}
+body header .header-box{
+  background-color: rgb(33, 60, 136);
+  height: 45px;
+  color: rgb(255, 255, 255);
+  font-size: 22px;
+  padding: 5px;
+  text-align: center;
+}
+.second-nav-box ul{
+  list-style: none;
+  display: flex;
+}
+.second-nav-box ul li{
+  background-color:rgb(231, 231, 231);
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  text-align: center;
+}
+.second-nav-box ul li:hover{
+  background-color:rgb(197, 197, 197);
+  box-shadow: 0px 0px 2px rgb(197, 197, 197);
+  transition: 0.3s;
+  cursor: pointer;
+}
+.second-nav-box  ul li a{
+  text-decoration: none;
+  color:#000000;
+  /* font-weight: bold; */
+}
+
+body footer{
+  width: 100vw;
+}
+body footer .footer-box{
+  background-color: rgb(33, 60, 136);
+  height: 35px;
+  color: rgb(255, 255, 255);
+  padding: 5px;
+  text-align: center;
+  font-weight: bold;
+}
+body main{
+  flex:1;
+  padding: 20px 0;
+  width: 100%;
+}
+body main .main-box{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  /* width: 80%; */
+}
+body main .title-box{
+  padding:15px;
+};
+body main .table-box{
+  padding:15px;
+  width: 800px;
+}
+.nav-box ul{
+  list-style: none;
+}
+.nav-box ul li{
+  background-color: rgb(40, 149, 251);
+  margin: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 180px;
+}
+.nav-box ul li:hover{
+  background-color:rgb(85, 238, 47);
+  box-shadow: 0px 0px 10px rgb(85, 238, 47);
+  transition: 0.3s;
+  cursor: pointer;
+}
+.nav-box ul li a{
+  text-decoration: none;
+  color:#000000;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+table{
+  padding:20px;
+  background-color:rgb(238, 238, 238);
+  border-radius: 10px;
+  border-spacing:0px;
+}
+thead .row-title{
+  background-color: rgb(116, 158, 182);
+}
+.row-cell-title{
+  border-bottom: 2.5px solid #131313;
+  border-top: 1px solid #131313;
+  padding: 5px 15px;
+  margin: 0;
+}
+tbody .row-result{
+  background-color: rgb(238, 238, 238);
+}
+.row-cell-result{
+  border-bottom: 1px solid #3b3b3b;
+  padding: 10px 15px;
+  margin: 0;
+  text-align: center;
+}
+
+.table-btn{
+  background-color:rgb(250, 155, 155);
+  margin: 5px;
+  padding: 7px;
+  border-radius: 5px;
+  text-align: center;
+}
+.table-btn:hover{
+  background-color:rgb(228, 57, 57);
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.sections{
+  padding:20px;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.new-item-title button{
+  background-color:rgb(253, 108, 193);
+  margin-bottom: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+.new-item-title button:hover{
+  background-color:rgb(255, 196, 59);
+  box-shadow: 0px 0px 10px rgb(241, 159, 27);
+  transition: 0.3s;
+  cursor: pointer;
+}
+.forms-style{
+  background-color:rgb(238, 238, 238);
+  border-radius: 10px;
+  min-width: 300px;
+}
+.forms-style form{
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+}
+.forms-style form .form-fields{
+  padding-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.forms-style form .form-fields label{
+  margin-bottom: 5px;
+}
+.forms-style form .form-fields input{
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid rgb(35, 43, 65);
+  border-radius: 5px;
+}
+.forms-style form .form-fields input:hover{
+  padding: 10px;
+  background-color: #ffffff;
+  border: 1px solid rgb(27, 95, 158);
+  box-shadow:inset 0px 0px 4px rgb(112, 112, 112);
+  border-radius: 5px;
+}
+.forms-style form button{
+  background-color:rgb(40, 149, 251);
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 18px;
+}
+.forms-style form button:hover{
+  background-color:rgb(92, 200, 65);
+  box-shadow: 0px 0px 10px rgb(85, 238, 47);
+  transition: 0.3s;
+  cursor: pointer;
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="./public/style.css">
+  <title>Usuários</title>
+</head>
+<body>
+  <header>
+    <%- include ('./layout/header.ejs') %>
+  </header>
+  <main>
+    <div class="main-box">
+      <div class="title-box">
+        <h2>Bem vindo a Lista de Tarefas</h2>
+        <div class="second-nav-box">
+          <ul>
+            <li><a href="/">voltar para home</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="table-box">
+        <table class="table-main">
+          <thead>
+            <tr class="row-title">
+              <th class="row-cell-title">Titulo</th>
+              <th class="row-cell-title">Usuário</th>
+              <th class="row-cell-title">Remover</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% task?.map((item) => {%> 
+              <tr class="row-result">
+                <td class="row-cell-result"> <%= item.title %></td>
+                <td class="row-cell-result"> <%= item.user_id %></td>
+                <td class="row-cell-result">
+                  <button type="submit" class="table-btn" id="remove-task-btn" value="<%= item.id %>">Excluir</button>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+      <div class="sections">
+        <div class="new-item-title">
+          <button id="new-task-btn" class="new-item-btn">Nova Tarefa</button>
+        </div>
+        <div id="new-task-form">
+          <div class="forms-style">
+            <form action="/newtask" method="POST">
+              <div class="form-fields">
+                <label for="title">Titulo</label>
+                <input
+                type="text"
+                name="title"
+                placeholder="tarefa"
+                />
+              </div>
+              <button type="submit" value="newtask">Criar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <%- include ('./layout/footer.ejs') %>
+  </footer>
+  <script language="JavaScript">
+    var btnNew = document.getElementById("new-task-btn");
+    var formDiv = document.getElementById("new-task-form");
+    formDiv.style.display = "none"
+    btnNew.onclick = function () {
+      formDiv.style.display = "block";
+    };
+  
+  </script>
+  <script language="JavaScript">
+    var btnRemove = document.getElementById("remove-task-btn");
+    var taskId = btnRemove.value
+    btnRemove.onclick = async function (){
+      try {     
+        var response = await fetch(`/tasks/${taskId}`, {
+          method: 'delete',
+        });
+        // alert("removido com sucesso!")
+        console.log('Completed!', response);
+      } catch(err) {
+        console.error(`Error: ${err}`);
+      }
+    };
+  </script>
+</body>
+</html>

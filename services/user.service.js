@@ -1,7 +1,4 @@
 const md5 = require("md5");
-const jwt = require("jsonwebtoken");
-const HashSecret = process.env.JWT_SECRET;
-const validTime = process.env.JWT_VALID_TIME;
 const { users, tasks } = require("../models");
 const { v4:uuidv4 } = require("uuid")
 
@@ -23,25 +20,7 @@ const isEmailRegistered = async (email) => {
 };
 
 const userValidate = async (email, password) => {
-  return await users.findOne({ where:{email, password:createHash(password)}}) ? true : false
-};
-
-const createCredential = async (userEmail) => {
-  try{
-    const user = await users.findOne({
-      where: {email: userEmail},
-    });
-    const token = jwt.sign(
-        {email:user.email},
-        HashSecret,
-        {expiresIn:`${validTime}ms`}
-    )
-    console.log("###credential###", user)
-    return "sucesso!"
-      
-  } catch (error) {
-    console.log(error);
-  };
+  return await users.findOne({ where:{email, password:createHash(password)}}) ? true : false;
 };
 
 const createUser = (body) => {
@@ -58,7 +37,7 @@ const createUser = (body) => {
 const allUsers = async () => {
   const resultFromDB = await users.findAll({});
   return resultFromDB;
-}
+};
 
 const userById = async (user_id) => {
   const resultFromDB = await users.findOne({
@@ -73,15 +52,9 @@ const userById = async (user_id) => {
   return {
     id,
     name,
-    email, 
-    // userTask: task.reduce((acc, item) => {
-    //   const { id, userTask } = item;
-    //   const newItem = { id, userTask: userTask.name };
-    //   return [...acc, newItem ]
-    // }, []),
-  }  
-}
-
+    email,
+  }
+};
 
 const createAdmin = async () => {
   const registerModel = {
@@ -97,7 +70,6 @@ const createAdmin = async () => {
 
 module.exports={
   isEmailRegistered,
-  createCredential,
   userValidate,
   createUser,
   allUsers,

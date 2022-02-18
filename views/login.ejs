@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="public/style.css">
+  <title>Login</title>
+</head>
+<body>
+  <header>
+    <div class="header-box">
+      <div>
+        <p>Sistema Usuários/Tarefas</p>
+      </div>
+    </div>
+  </header>
+  <main>
+    <div class="main-box">
+      <div class="title-box">
+        <h1>Bem vindo - Faça seu login</h1>
+      </div>
+      <div class="login-box">
+        <div class="forms-style">
+          <form action="/login" method="POST">
+            <div class="form-fields">
+              <label for="email">Email</label>
+              <input
+              type="text"
+              name="email"
+              placeholder="seuemail@email.com"
+              />
+            </div>
+            <div class="form-fields">
+              <label for="password">Senha</label>
+              <input
+                type="password"
+                name="password"
+                placeholder="senha"
+              />
+            </div>
+            <button type="submit" value="login">Entrar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <%- include ('./layout/footer.ejs') %>
+  </footer>
+</body>
+</html>
